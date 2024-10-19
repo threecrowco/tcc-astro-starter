@@ -1,0 +1,39 @@
+---
+interface Props {
+    bgImage?: string;
+}
+
+const { bgImage = "/default.jpg" } = Astro.props;
+---
+
+<div class="h-[40vh] w-full" id="duotone" aria-label="Duotone image">
+    <!-- Image is the CSS background image -->
+</div>
+
+<style define:vars={{ bgImage }}>
+    #duotone {
+        flex: 8;
+        background-image: url(var(--bgImage));
+        background-size: cover;
+        background-position: center;
+        position: relative;
+    }
+    #duotone::before,
+    #duotone::after {
+        content: "";
+        display: block;
+        height: 100%;
+        width: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+    }
+    #duotone::before {
+        background-color: #f00;
+        mix-blend-mode: darken;
+    }
+    #duotone::after {
+        background-color: #260b46;
+        mix-blend-mode: lighten;
+    }
+</style>
